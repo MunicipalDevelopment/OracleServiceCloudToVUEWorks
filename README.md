@@ -1,6 +1,25 @@
 # Oracle Service Cloud To VUEWorks
 Move data from Oracle Service Cloud to Service Requests in VUEWorks. Contains Classes for Oracle and VUEWorks which could be used for other integrations or applications.
-# How to Use Oracle to VUEWorks
+
+### Main.py
+Grab all 311 calls for DMD. Is it in VUEWorks already? If not, put it in.
+```python
+import oracle as o
+import vueworks as vw
+
+v=vw.VUEWorks()
+O=o.Oracle()
+
+for x in O.incidents['items']: #get all items
+    invw = v.checkVUEWorks(x['id']) # check ID in VUEWorks
+    if not invw['in']: # if False - not in VUEWorks
+        incident = O.getIncidentData(x['id']) #grab all 311 data so can pass it to VW
+        if incident["customFields"]["c"]["latitude"] is not None and incident["customFields"]["c"]["longitude"] is not None: #will fail is null lat.long
+            result = v.createSR(x['id'],incident["customFields"]["c"]["latitude"],incident["customFields"]["c"]["longitude"]) #create it in VW passing data
+            print "created Service Request: " + result
+    else:
+        print "In VUEWorks already"
+```
 
 ### VUEWorks
 Creates a VUEWorks object that can query and create Service Requests.
