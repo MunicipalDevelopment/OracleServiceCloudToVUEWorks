@@ -29,6 +29,7 @@ class VUEWorks(object):
     def createSR(self,rid,lat,lng):
         """Creates a Service Requests and returns string. Returns ID - internal ID to be used with GetRequestDataByID endpoint."""
         srequest = requests.post(self.create,data={"AppAuthKey":self.key,"ProjectName":self.projectName,"RefReportID":rid,"IssueID":"43","Description":"TEST BY PAUL","FirstName":"Paul","LastName":"Crickard","Email":"pcrickard@cabq.gov","Phone":"505-366-4020","Latitude":lat,"Longitude":lng,"Location":"Paul St"})
+        #Pass the hardcoded Params from Oracle in the function to data[]
         theID = re.search('<ID>(.+?)</ID>',srequest.text)
         if theID:
             return theID.group(1)
