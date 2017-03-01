@@ -8,3 +8,7 @@ get:http://myserver/GetRequestDataByReference
 [OracleSecurity]
 user:ItsMe
 pass:LetMeIn
+
+[OracleURLS]
+queryURL:https://MyServer/v1.3/incidents?q=CustomFields.c.dept_div.lookupName=%27Municipal%20Development%27&totalResults=true
+incidentURL:https://MyServer/v1.3/incidents/
