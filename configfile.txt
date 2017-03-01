@@ -1,0 +1,10 @@
+[VWSecurity]
+pass:123-456-789
+
+[VWURLS]
+create:http://myserver/CreateNewRequestAtLocation
+get:http://myserver/GetRequestDataByReference
+
+[OracleSecurity]
+user:ItsMe
+pass:LetMeIn
